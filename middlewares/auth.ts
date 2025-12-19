@@ -1,4 +1,4 @@
-import { verifyToken } from "@clerk/clerk-sdk-node";
+import { verifyToken } from "@clerk/express";
 import type { NextFunction, Request, Response } from "express";
 import Error from "../lib/Error";
 

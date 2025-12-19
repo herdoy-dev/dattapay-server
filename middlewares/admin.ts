@@ -4,7 +4,7 @@ import Error from "../lib/Error";
 export default (req: Request, res: Response, next: NextFunction) => {
   const token = req.header("x-api-token");
   if (!token) throw new Error(403, "Access denied. No token provided.");
-  if (token !== process.env.AUTH_TOKEN)
+  if (token !== process.env.ADMIN_API_TOKEN)
     throw new Error(403, "Access denied. Invalid Token.");
   next();
 };

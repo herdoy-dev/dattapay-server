@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  firstName         String
+  clerkUserId       String
+  zynkEntityId      String?
+  lastName          String
+  email             String   @unique
+  phoneNumberPrefix String
+  phoneNumber       String
+  nationality       String
+  dateOfBirth       DateTime
+  addresse          Address?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+}
+
+model Address {
+  id           Int      @id @default(autoincrement())
+  addressLine1 String
+  addressLine2 String?
+  locality     String
+  city         String
+  state        String
+  country      String
+  postalCode   String
+  userId       Int      @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
